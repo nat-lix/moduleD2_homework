@@ -1,4 +1,4 @@
-1. Создать двух пользователей (с помощью метода User.objects.create_user).
+1.Создать двух пользователей (с помощью метода User.objects.create_user).
 
 from accounts.models import *
 
