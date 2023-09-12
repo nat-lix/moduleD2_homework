@@ -1,30 +1,43 @@
-1. Ñîçäàòü äâóõ ïîëüçîâàòåëåé (ñ ïîìîùüþ ìåòîäà User.objects.create_user).
+1.	Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ Ð´Ð²ÑƒÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ (Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ Ð¼ÐµÑ‚Ð¾Ð´Ð° User.objects.create_user).
+
 from accounts.models import *
+
 >>> user1 = User.objects.create(username='John', last_name='Lennon')  
 >>> user2 = User.objects.create(username='Paul', last_name='McCartney')
-2. Ñîçäàòü äâà îáúåêòà ìîäåëè Author, ñâÿçàííûå ñ ïîëüçîâàòåëÿìè.
+
+2. Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ Ð´Ð²Ð° Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Ð¼Ð¾Ð´ÐµÐ»Ð¸ Author, ÑÐ²ÑÐ·Ð°Ð½Ð½Ñ‹Ðµ Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑÐ¼Ð¸.
+
 >>> Author.objects.create(authorUser=user1)
 >>> Author.objects.create(authorUser=user2)
-3. Äîáàâèòü 4 êàòåãîðèè â ìîäåëü Category.
+
+3. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ 4 ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¸ Ð² Ð¼Ð¾Ð´ÐµÐ»ÑŒ Category.
+
 >>> Category.objects.create(name='News')
 >>> Category.objects.create(name='Tutorials')
 >>> Category.objects.create(name='Videos')
 >>> Category.objects.create(name='Lifehacks')
-4. Äîáàâèòü 2 ñòàòüè è 1 íîâîñòü.
->>>    Post.objects.create(postAuthor=Author.objects.get(authorUser=User.objects.get(id=1)), categoryType='AR', title='How to cook spaghetti', text="Just boil 'em!")
+
+4. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ 2 ÑÑ‚Ð°Ñ‚ÑŒÐ¸ Ð¸ 1 Ð½Ð¾Ð²Ð¾ÑÑ‚ÑŒ.
+
+>>> Post.objects.create(postAuthor=Author.objects.get(authorUser=User.objects.get(id=1)), categoryType='AR', title='How to cook spaghetti', text="Just boil 'em!")
 >>> Post.objects.create(postAuthor=Author.objects.get(authorUser=User.objects.get(id=1)), categoryType='AR', title='How to iron your shoelaces', text="Just don't burn 'em!")
 >>> Post.objects.create(postAuthor=Author.objects.get(authorUser=User.objects.get(id=2)), categoryType='NW', title='Outstanding case!', text='Bird is flying!')
-5. Ïðèñâîèòü èì êàòåãîðèè (êàê ìèíèìóì â îäíîé ñòàòüå/íîâîñòè äîëæíî áûòü íå ìåíüøå 2 êàòåãîðèé).
+
+5. ÐŸÑ€Ð¸ÑÐ²Ð¾Ð¸Ñ‚ÑŒ Ð¸Ð¼ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¸ (ÐºÐ°Ðº Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ Ð² Ð¾Ð´Ð½Ð¾Ð¹ ÑÑ‚Ð°Ñ‚ÑŒÐµ/Ð½Ð¾Ð²Ð¾ÑÑ‚Ð¸ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ Ð½Ðµ Ð¼ÐµÐ½ÑŒÑˆÐµ 2 ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¹).
+
 >>> Post.objects.get(id=1).postCategory.add(Category.objects.get(id=2), Category.objects.get(id=3))  
 >>> Post.objects.get(id=2).postCategory.add(Category.objects.get(id=4))
 >>> Post.objects.get(id=3).postCategory.add(Category.objects.get(id=1))
-6. Ñîçäàòü êàê ìèíèìóì 4 êîììåíòàðèÿ ê ðàçíûì îáúåêòàì ìîäåëè Post (â êàæäîì îáúåêòå äîëæåí áûòü êàê ìèíèìóì îäèí êîììåíòàðèé).
+
+6. Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ ÐºÐ°Ðº Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ 4 ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ñ Ðº Ñ€Ð°Ð·Ð½Ñ‹Ð¼ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°Ð¼ Ð¼Ð¾Ð´ÐµÐ»Ð¸ Post (Ð² ÐºÐ°Ð¶Ð´Ð¾Ð¼ Ð¾Ð±ÑŠÐµÐºÑ‚Ðµ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ ÐºÐ°Ðº Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼ Ð¾Ð´Ð¸Ð½ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹).
+
 >>> Comment.objects.create(commentUser=User.objects.get(id=2), commentPost=Post.objects.get(id=1), text='Haha!')
 >>> Comment.objects.create(commentUser=User.objects.get(id=1), commentPost=Post.objects.get(id=1), text='Neat')
 >>> Comment.objects.create(commentUser=User.objects.get(id=2), commentPost=Post.objects.get(id=2), text='You think so?')
 >>> Comment.objects.create(commentUser=User.objects.get(id=1), commentPost=Post.objects.get(id=3), text='So high!')
 
-7. Ïðèìåíÿÿ ôóíêöèè like() è dislike() ê ñòàòüÿì/íîâîñòÿì è êîììåíòàðèÿì, ñêîððåêòèðîâàòü ðåéòèíãè ýòèõ îáúåêòîâ.
+7. ÐŸÑ€Ð¸Ð¼ÐµÐ½ÑÑ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ like() Ð¸ dislike() Ðº ÑÑ‚Ð°Ñ‚ÑŒÑÐ¼/Ð½Ð¾Ð²Ð¾ÑÑ‚ÑÐ¼ Ð¸ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸ÑÐ¼, ÑÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð¸ ÑÑ‚Ð¸Ñ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð².
+
 >>> Post.objects.get(id=1).like()
 >>> Post.objects.get(id=1).like()
 >>> Post.objects.get(id=1).like()
@@ -44,14 +57,22 @@ from accounts.models import *
 >>> Comment.objects.get(id=3).dislike()
 >>> Comment.objects.get(id=4).like() 
 >>> Comment.objects.get(id=4).dislike()
-8. Îáíîâèòü ðåéòèíãè ïîëüçîâàòåëåé.
+
+8. ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹.
+
 >>> Author.objects.get(id=1).update_rating()
 >>> Author.objects.get(id=2).update_rating()
-9. Âûâåñòè username è ðåéòèíã ëó÷øåãî ïîëüçîâàòåëÿ (ïðèìåíÿÿ ñîðòèðîâêó è âîçâðàùàÿ ïîëÿ ïåðâîãî îáúåêòà).
+
+9. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ username Ð¸ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³ Ð»ÑƒÑ‡ÑˆÐµÐ³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ (Ð¿Ñ€Ð¸Ð¼ÐµÐ½ÑÑ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÑƒ Ð¸ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°Ñ Ð¿Ð¾Ð»Ñ Ð¿ÐµÑ€Ð²Ð¾Ð³Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°).
+
 >>> Author.objects.order_by('-ratingAuthor').values('authorUser__username', 'ratingAuthor')[0]
-10. Âûâåñòè äàòó äîáàâëåíèÿ, username àâòîðà, ðåéòèíã, çàãîëîâîê è ïðåâüþ ëó÷øåé ñòàòüè, îñíîâûâàÿñü íà ëàéêàõ/äèñëàéêàõ ê ýòîé ñòàòüå.
+
+10. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð´Ð°Ñ‚Ñƒ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ, username Ð°Ð²Ñ‚Ð¾Ñ€Ð°, Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³, Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ð¸ Ð¿Ñ€ÐµÐ²ÑŒÑŽ Ð»ÑƒÑ‡ÑˆÐµÐ¹ ÑÑ‚Ð°Ñ‚ÑŒÐ¸, Ð¾ÑÐ½Ð¾Ð²Ñ‹Ð²Ð°ÑÑÑŒ Ð½Ð° Ð»Ð°Ð¹ÐºÐ°Ñ…/Ð´Ð¸ÑÐ»Ð°Ð¹ÐºÐ°Ñ… Ðº ÑÑ‚Ð¾Ð¹ ÑÑ‚Ð°Ñ‚ÑŒÐµ.
+
 >>> Post.objects.order_by('-postRating')[:1].values('dateCreation', 'postAuthor__authorUser__username', 'postRating', 'title')
 >>> Post.objects.order_by('-postRating').first().preview()
-11. Âûâåñòè âñå êîììåíòàðèè (äàòà, ïîëüçîâàòåëü, ðåéòèíã, òåêñò) ê ýòîé ñòàòüå.
+
+11. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð²ÑÐµ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¸ (Ð´Ð°Ñ‚Ð°, Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ, Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³, Ñ‚ÐµÐºÑÑ‚) Ðº ÑÑ‚Ð¾Ð¹ ÑÑ‚Ð°Ñ‚ÑŒÐµ.
+
 >>> Comment.objects.filter(commentPost = Post.objects.order_by('-postRating')[0]).values('dateCreatiion', 'commentUser__username', 'commentRating', 'text')
 
