@@ -34,7 +34,7 @@ class Post(models.Model):
         (ARTICLE, 'Статья'), 
     )
     categoryType = models.CharField(max_length=2, choices=CATEGORY_CHOICES, default=ARTICLE)
-    dateCreatiion = models.DateTimeField(auto_now_add=True)
+    dateCreation = models.DateTimeField(auto_now_add=True)
     postCategory = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(max_length=128)
     text = models.TextField()
